@@ -19,10 +19,10 @@ module.exports.index = async (req, res) => {
     allListings = await Listing.find({ category: filterCategory });
   }
 
-  // if (allListings.length === 0) {
-  //   req.flash("error", "Listing you requested for does not exist!");
-  //   return res.redirect("/listings");
-  // }
+  if (allListings.length === 0) {
+    req.flash("error", "Listing you requested for does not exist!");
+    return res.redirect("/listings");
+  }
   res.render("listings/index.ejs", { allListings, filterCategory });
 };
 
